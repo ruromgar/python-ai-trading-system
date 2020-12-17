@@ -1,0 +1,42 @@
+# Welcome to Serverless!
+#
+# This file is the main config file for your service.
+# It's very minimal at this point and uses default values.
+# You can always add more config options for more control.
+# We've included some commented out config examples here.
+# Just uncomment any of them to get that config option.
+#
+# For full config options, check the docs:
+#    docs.serverless.com
+#
+# Happy Coding!
+
+service: ai-trading-system
+# app and org for use with dashboard.serverless.com
+#app: your-app-name
+#org: your-org-name
+
+# You can pin your service to only deploy with a specific Serverless version
+# Check out our docs for more details
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: python3.8
+  environment:
+      TELEGRAM_TOKEN: ${env:TELEGRAM_TOKEN}
+      # If using RobinHood    
+      RH_USER_EMAIL: ${env:RH_USER_EMAIL}
+      RH_PASSWORD: ${env:RH_PASSWORD}
+      RH_MFA_CODE: ${env:RH_MFA_CODE}
+      # If using Alpaca
+      ALPACA_KEY_ID: ${env:ALPACA_KEY_ID}
+      ALPACA_SECRET_KEY: ${env:ALPACA_SECRET_KEY}
+
+functions:
+  cron:
+      handler: handler.send_message
+      events:
+        # Invoke Lambda function at 21:00 UTC every day
+        - schedule: cron(00 21 * * ? *)
+
