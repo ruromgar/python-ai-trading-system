@@ -1,0 +1,22 @@
+version: '3.6'
+services:
+
+  ai-trading-system:
+    restart: on-failure
+    build:
+      context: .
+      dockerfile: ai-trading-system/Dockerfile
+    env_file:
+      - ai-trading-system/src/config/.env
+    ports:
+      - 8081:8081
+    command: >
+      /bin/sh -c "
+        npm install -g nodemon && nodemon -e py --watch src --exec 'python3 -u src/app.py';
+      "
+    volumes:
+      - ./ai-trading-system/src:/service/app/src
+    hostname: ai-trading-system
+
+volumes:
+    db_data:

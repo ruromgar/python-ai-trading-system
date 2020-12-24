@@ -1,0 +1,40 @@
+# https://coverage.readthedocs.io/en/latest/config.html
+# .coveragerc to control coverage.py embbed in pytest --cov
+[run]
+branch = True
+omit =
+    .*
+    */env/*
+    */*-env/*
+    */venv/*
+    */config/*
+    *setup.py*
+    *__init__.py**
+    *_test.py
+    *app.py
+    */dist-packages/*
+    */site-packages/*
+[paths]
+source =
+    .
+[report]
+# Regexes for lines to exclude from consideration
+exclude_lines =
+    # Have to re-enable the standard pragma
+    pragma: no cover
+
+    # Don't complain about missing debug-only code:
+    def __repr__
+    if self\.debug
+
+    # Don't complain if non-runnable code isn't run:
+    if 0:
+    if __name__ == .__main__.:
+
+ignore_errors = False
+fail_under = 90
+precision = 2
+show_missing = True
+
+[html]
+directory = coverage_html_report

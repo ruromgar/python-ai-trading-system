@@ -2,6 +2,7 @@
 .Python
 venv/
 env/
+.env
 build/
 develop-eggs/
 dist/
