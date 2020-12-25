@@ -5,5 +5,5 @@ class YahooRepository:
 
         self._yahoo_client = yahoo_client
 
-    def get_finance_data():
+    def get_finance_data(self):
         return self._yahoo_client.get_finance_data()
