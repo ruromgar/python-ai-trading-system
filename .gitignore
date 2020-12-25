@@ -2,6 +2,7 @@
 .Python
 venv/
 env/
+.env
 build/
 develop-eggs/
 dist/
@@ -16,6 +17,7 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
+__pycache__
 
 # Serverless directories
 .serverless
