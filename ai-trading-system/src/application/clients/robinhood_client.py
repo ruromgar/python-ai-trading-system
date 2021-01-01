@@ -11,7 +11,7 @@ class RobinHoodClient:
         self._rh_user_email = self._config.ROBINHOOD_CONFIG['mail']
         self._rh_password = self._config.ROBINHOOD_CONFIG['password']
 
-    def trade_robinhood(last_real_data, forecast):
+    def trade_robinhood(self, last_real_data, forecast):
         timed_otp = pyotp.TOTP(self._rh_mfa_code).now()
         login = rh.login(self._rh_user_email, self._rh_password, mfa_code=totp)
 
