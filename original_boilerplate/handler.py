@@ -54,7 +54,7 @@ def get_forecast():
 
 def trade_robinhood():
     timed_otp = pyotp.TOTP(RH_MFA_CODE).now()
-    login = rh.login(RH_USER_EMAIL, RH_PASSWORD, mfa_code=totp)
+    login = rh.login(RH_USER_EMAIL, RH_PASSWORD, mfa_code=timed_otp)
 
     last_real_data, forecast = get_forecast()
 
