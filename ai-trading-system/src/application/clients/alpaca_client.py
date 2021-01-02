@@ -10,7 +10,7 @@ class AlpacaClient:
         self._secret_key = self._config.ALPACA_CONFIG['secret_key']
         self._base_url = self._config.ALPACA_CONFIG['base_url']
 
-    def trade_alpaca(last_real_data, forecast):
+    def trade_alpaca(self, last_real_data, forecast):
         api = alpaca.REST(self._key_id, self._secret_key, base_url=self._base_url)
 
         last_real_data, forecast = get_forecast()
