@@ -11,7 +11,7 @@ LOG_CONFIG = {
 }
 
 POLLING_CONFIG = {
-    'yahoo_interval': 30,
+    'yahoo_interval': 3000,
 }
 
 ROBINHOOD_CONFIG = {
