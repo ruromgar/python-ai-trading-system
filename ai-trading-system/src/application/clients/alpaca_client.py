@@ -10,6 +10,38 @@ class AlpacaClient:
         self._secret_key = self._config.ALPACA_CONFIG['secret_key']
         self._base_url = self._config.ALPACA_CONFIG['base_url']
 
+        self._api = alpaca.REST(self._key_id, self._secret_key, base_url=self._base_url)
+
+    def get_account_info(self):
+        account = self._api.get_account()
+        print(
+            f'The buying power is {acc.buying_power} {acc.currency} '
+            f'and the equity is {acc.equity} {acc.currency}\n'
+            f'The account status is {account.status}'
+        )
+
+    def is_market_open(self):
+        clock = self._api.get_clock()
+        return clock.is_open
+
+    def get_prices(self, asset_symbol):
+        # Get daily price data for GOOG over the last 5 trading days.
+        barset = self._api.get_barset('GOOG', 'day', limit=5)
+        bars = barset['GOOG']
+
+        # See how much GOOG moved in that timeframe.
+        week_open = bars[0].o
+        week_close = bars[-1].c
+        percent_change = (week_close - week_open) / week_open * 100
+        print(f'GOOG moved {percent_change}% over the last 5 days')
+
+    def get_portfolio(self):
+        # Get a list of all of our positions.
+        portfolio = self._api.list_positions()
+
+        # Get our position in GOOG.
+        position = self._api.get_position('GOOG')
+
     def trade_alpaca(self, last_real_data, forecast):
         api = alpaca.REST(self._key_id, self._secret_key, base_url=self._base_url)
 
