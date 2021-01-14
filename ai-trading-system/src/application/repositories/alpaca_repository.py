@@ -5,5 +5,5 @@ class AlpacaRepository:
 
         self._alpaca_client = alpaca_client
 
-    def test(self):
-        return self._alpaca_client.test()
+    def is_market_open(self):
+        return self._alpaca_client.is_market_open()
